@@ -1,4 +1,6 @@
 import App from '../App'
+// require.ensure
+// 这是 Webpack 的特殊语法，用来设置 code-split point
 
 const home = r => require.ensure([], () => r(require('../page/home/home')), 'home')
 const city = r => require.ensure([], () => r(require('../page/city/city')), 'city')
@@ -47,18 +49,18 @@ const find = r => require.ensure([], () => r(require('../page/find/find')), 'fin
 const download = r => require.ensure([], () => r(require('../page/download/download')), 'download')
 
 
-
-
 export default [{
     path: '/',
     component: App, //顶层路由，对应index.html
     children: [ //二级路由。对应App.vue
         //地址为空时跳转home页面
+        //为什么要设置这个呢？因为当我们在地址栏输入地址时，地址栏的地址为空，所以会跳转到home页面
         {
             path: '',
             redirect: '/home'
         },
         //首页城市列表页
+        //当路径为空的时候, 会自动跳转到 /home 的路由. 
         {
             path: '/home',
             component: home
@@ -97,7 +99,7 @@ export default [{
                 children: [{
                     path: 'shopSafe', //商铺安全认证页
                     component: shopSafe,
-                }, ]
+                },]
             }]
         },
         //确认订单页
@@ -126,8 +128,8 @@ export default [{
                         path: 'searchAddress', //搜索地址
                         component: searchAddress,
                     }]
-                }, ]
-            }, ]
+                },]
+            },]
         },
         //登录注册页
         {
@@ -144,15 +146,15 @@ export default [{
                 children: [{
                     path: 'setusername',
                     component: setusername,
-                },{
+                }, {
                     path: 'address',
                     component: address,     //编辑地址
-                    children:[{
-                        path:'add',
-                        component:add,
-                        children:[{
-                            path:'addDetail',
-                            component:addDetail
+                    children: [{
+                        path: 'add',
+                        component: add,
+                        children: [{
+                            path: 'addDetail',
+                            component: addDetail
                         }]
                     }]
                 }]
@@ -174,7 +176,7 @@ export default [{
             children: [{
                 path: 'orderDetail', //订单详情页
                 component: orderDetail,
-            }, ]
+            },]
         },
         //vip卡页
         {
@@ -205,10 +207,10 @@ export default [{
         {
             path: '/service',
             component: service,
-             children: [{
+            children: [{
                 path: 'questionDetail', //订单详情页
                 component: questionDetail,
-            }, ]
+            },]
         },
         //余额
         {
@@ -217,7 +219,7 @@ export default [{
             children: [{
                 path: 'detail', //余额说明
                 component: balanceDetail,
-            }, ]
+            },]
         },
         //我的优惠页
         {
@@ -247,7 +249,7 @@ export default [{
             children: [{
                 path: 'detail', //积分说明
                 component: pointsDetail,
-            }, ]
+            },]
         },
     ]
 }]

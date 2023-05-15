@@ -2,7 +2,7 @@ import {
 	baseUrl
 } from './env'
 
-export default async(url = '', data = {}, type = 'GET', method = 'fetch') => {
+export default async (url = '', data = {}, type = 'GET', method = 'fetch') => {
 	type = type.toUpperCase();
 	url = baseUrl + url;
 
@@ -35,7 +35,7 @@ export default async(url = '', data = {}, type = 'GET', method = 'fetch') => {
 				value: JSON.stringify(data)
 			})
 		}
-		
+
 		try {
 			const response = await fetch(url, requestConfig);
 			const responseJson = await response.json();
