@@ -10,7 +10,9 @@
         <span>定位不准时，请在城市列表中选择</span>
       </div>
 
-      <!-- 当, 点击了这部分区域之后, 就直接到了对应的页面了. -->
+    <!--使用 router-link 组件进行导航 -->
+    <!--通过传递 `to` 来指定链接 -->
+    <!--`<router-link>` 将呈现一个带有正确 `href` 属性的 `<a>` 标签-->
       <router-link :to="'/city/' + guessCityid" class="guess_city">
         <span>{{ guessCity }}</span>
         <!-- 右边的小图标. -->
